@@ -32,7 +32,7 @@ let NumberOfSections = sections.length ;
 */ 
 
 
-function updateNav(i){
+let  updateNav=(i)=>{
     let listItem = document.createElement('li');
     listItem.innerHTML=`<a href="#section${i+1}">section${i+1}</a>`
     fragment.appendChild(listItem);
@@ -59,9 +59,9 @@ for(let i = 0 ; i<NumberOfSections ; i++){
 // Add class 'active' to section when near top of viewport
 onscroll=()=>{
     let scrollPosition = document.documentElement.scrollTop;
-    for(let i = 0 ; i<NumberOfSections; i++){
-        if(scrollPosition>=sections[i].offsetTop && scrollPosition<sections[i].offsetTop+sections[i].offsetHeight){
-            let currentId=sections[i].attributes.id.value;
+    for(section of sections){
+        if(scrollPosition>=section.offsetTop && scrollPosition<section.offsetTop+section.offsetHeight){
+            let currentId=section.attributes.id.value;
             removeActiveClasses();
             addActiveClass(currentId);
         }
