@@ -24,6 +24,7 @@ const ul = document.getElementById("navbar__list");
 const addSection = document.getElementById('btn');
 const main = document.querySelector('main');
 const fragment = document.createDocumentFragment();
+const links = document.getElementsByTagName('a');
 let NumberOfSections = sections.length ;
 /**
  * End Global Variables
@@ -34,6 +35,14 @@ let NumberOfSections = sections.length ;
 
 let  updateNav=(i)=>{
     let listItem = document.createElement('li');
+    listItem.innerHTML=`<a >section${i+1}</a>`
+    //listItem.innerHTML=`<a href="#section${i+1}">section${i+1}</a>`
+    fragment.appendChild(listItem);
+}
+//update nav for new added sections so that scroll functionality  works on them
+//only the dynamically added sections uses css for scrolling other wise js is used
+let  NewupdateNav=(i)=>{
+    let listItem = document.createElement('li');
     listItem.innerHTML=`<a href="#section${i+1}">section${i+1}</a>`
     fragment.appendChild(listItem);
 }
@@ -42,8 +51,14 @@ let removeActiveClasses=()=>{
     sections.forEach(section=>{section.classList.remove("your-active-class")})
 }
 let addActiveClass =(id)=>{document.getElementById(id).classList.add("your-active-class")}
-
-
+//100vh = 731px and each section has a hieght of 100vh
+let scroll = (n)=>{
+    window.scrollTo({
+        top:n*731,
+        left:0,
+        behavior:"smooth"
+    });
+}
 /**
  * End Helper Functions
  * Begin Main Functions
@@ -89,7 +104,7 @@ addSection.addEventListener('click', ()=>{
       <p>Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar gravida, ipsum lacus aliquet velit, vel luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.</p>
     </div>
   </section>`
-  updateNav(NumberOfSections-1);
+  NewupdateNav(NumberOfSections-1);
   ul.appendChild(fragment);
 })
 let y = performance.now();
@@ -97,7 +112,12 @@ console.log(y-x);
 
 // Build menu 
 
-// Scroll to section on link click
+// Scroll to section on link click  
+for( let i =0 ; i<links.length;i++){
+    links[i].addEventListener('click' , ()=>{
+        scroll(i+1);
+    })
+}
 
 // Set sections as active
 
