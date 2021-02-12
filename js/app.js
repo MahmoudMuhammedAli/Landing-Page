@@ -1,16 +1,16 @@
- /**
- * 
- * Manipulating the DOM exercise.
- * Exercise programmatically builds navigation,
- * scrolls to anchors from navigation,
- * and highlights section in viewport upon scrolling.
- * 
- * Dependencies: None
- * 
- * JS Version: ES2015/ES6
- * 
- * JS Standard: ESlint
- * 
+/**
+* 
+* Manipulating the DOM exercise.
+* Exercise programmatically builds navigation,
+* scrolls to anchors from navigation,
+* and highlights section in viewport upon scrolling.
+* 
+* Dependencies: None
+* 
+* JS Version: ES2015/ES6
+* 
+* JS Standard: ESlint
+* 
 */
 
 /**
@@ -25,38 +25,38 @@ const addSection = document.getElementById('btn');
 const main = document.querySelector('main');
 const fragment = document.createDocumentFragment();
 const links = document.getElementsByTagName('a');
-let NumberOfSections = sections.length ;
+let NumberOfSections = sections.length;
 /**
  * End Global Variables
  * Start Helper Functions
  * 
-*/ 
+*/
 
 
-let  updateNav=(i)=>{
+let updateNav = (i) => {
     let listItem = document.createElement('li');
-    listItem.innerHTML=`<a >section${i+1}</a>`
+    listItem.innerHTML = `<a >section${i + 1}</a>`
     //listItem.innerHTML=`<a href="#section${i+1}">section${i+1}</a>`
     fragment.appendChild(listItem);
 }
 //update nav for new added sections so that scroll functionality  works on them
 //only the dynamically added sections uses css for scrolling other wise js is used
-let  NewupdateNav=(i)=>{
+let NewupdateNav = (i) => {
     let listItem = document.createElement('li');
-    listItem.innerHTML=`<a href="#section${i+1}">section${i+1}</a>`
+    listItem.innerHTML = `<a href="#section${i + 1}">section${i + 1}</a>`
     fragment.appendChild(listItem);
 }
 
-let removeActiveClasses=()=>{
-    sections.forEach(section=>{section.classList.remove("your-active-class")})
+let removeActiveClasses = () => {
+    sections.forEach(section => { section.classList.remove("your-active-class") })
 }
-let addActiveClass =(id)=>{document.getElementById(id).classList.add("your-active-class")}
+let addActiveClass = (id) => { document.getElementById(id).classList.add("your-active-class") }
 //100vh = 731px and each section has a hieght of 100vh
-let scroll = (n)=>{
+let scroll = (n) => {
     window.scrollTo({
-        top:n*731,
-        left:0,
-        behavior:"smooth"
+        top: n * 731,
+        left: 0,
+        behavior: "smooth"
     });
 }
 /**
@@ -66,17 +66,17 @@ let scroll = (n)=>{
 */
 
 // build the nav
-for(let i = 0 ; i<NumberOfSections ; i++){
+for (let i = 0; i < NumberOfSections; i++) {
     updateNav(i);
- }
- ul.appendChild(fragment);
+}
+ul.appendChild(fragment);
 
 // Add class 'active' to section when near top of viewport
-onscroll=()=>{
+onscroll = () => {
     let scrollPosition = document.documentElement.scrollTop;
-    for(section of sections){
-        if(scrollPosition>=section.offsetTop && scrollPosition<section.offsetTop+section.offsetHeight){
-            let currentId=section.attributes.id.value;
+    for (section of sections) {
+        if (scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
+            let currentId = section.attributes.id.value;
             removeActiveClasses();
             addActiveClass(currentId);
         }
@@ -91,11 +91,11 @@ onscroll=()=>{
  * Begin Events
  * 
 */
-addSection.addEventListener('click', ()=>{
+addSection.addEventListener('click', () => {
     NumberOfSections++;
     let newSection = document.createElement('section');
     main.appendChild(newSection);
-    newSection.outerHTML=` 
+    newSection.outerHTML = ` 
     <section id="section${NumberOfSections}"  data-nav="Section ${NumberOfSections}" class="your-active-class">
     <div class="landing__container">
       <h2>Section ${NumberOfSections}</h2>
@@ -104,25 +104,21 @@ addSection.addEventListener('click', ()=>{
       <p>Aliquam a convallis justo. Vivamus venenatis, erat eget pulvinar gravida, ipsum lacus aliquet velit, vel luctus diam ipsum a diam. Cras eu tincidunt arcu, vitae rhoncus purus. Vestibulum fermentum consectetur porttitor. Suspendisse imperdiet porttitor tortor, eget elementum tortor mollis non.</p>
     </div>
   </section>`
-  NewupdateNav(NumberOfSections-1);
-  ul.appendChild(fragment);
+    NewupdateNav(NumberOfSections - 1);
+    ul.appendChild(fragment);
 })
 let y = performance.now();
-console.log(y-x);
+console.log(y - x);
 
 // Build menu 
 
 // Scroll to section on link click  
-for( let i =0 ; i<links.length;i++){
-    links[i].addEventListener('click' , ()=>{
-        scroll(i+1);
+for (let i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', () => {
+        scroll(i + 1);
     })
 }
 
 // Set sections as active
 
 
-/*for(let i=0 ; i<NumberOfSections ; i++){
-                sections[i].classList.remove("your-active-class");
-            }
-            section.classList.add("your-active-class");*/
