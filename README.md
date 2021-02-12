@@ -5,9 +5,7 @@
 * [Instructions](#instructions)
 
 ## Instructions
-
-The starter project has some HTML and CSS styling to display a static version of the Landing Page project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
-
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the Udacity Classroom.
+added the ability to add sections dynamically without the need for a reflaw.
+added focusing on sections using `your-active-section` class
+added smooth scrolling for all the sections.
+using `position:sticky;` I kept the back to the top buttom inside the footer
