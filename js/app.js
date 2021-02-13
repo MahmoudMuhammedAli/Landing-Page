@@ -28,6 +28,7 @@ const main = document.querySelector('main');
 const fragment = document.createDocumentFragment();
 const links = document.getElementsByTagName('a');
 let NumberOfSections = sections.length;
+const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 /**
  * End Global Variables
  * Start Helper Functions
@@ -37,7 +38,7 @@ let NumberOfSections = sections.length;
 
 let updateNav = (i) => {
     let listItem = document.createElement('li');
-    listItem.innerHTML = `<a >section${i + 1}</a>`
+    listItem.innerHTML = `<a>section${i + 1}</a>`
     //listItem.innerHTML=`<a href="#section${i+1}">section${i+1}</a>`
     fragment.appendChild(listItem);
 }
@@ -56,7 +57,7 @@ let addActiveClass = (id) => { document.getElementById(id).classList.add("your-a
 //100vh = 731px and each section has a hieght of 100vh
 let scroll = (n) => {
     window.scrollTo({
-        top: n * window.innerHeight,
+        top: (n * vh),
         left: 0,
         behavior: "smooth"
     });
