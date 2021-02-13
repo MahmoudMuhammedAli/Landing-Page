@@ -64,7 +64,7 @@ let addActiveClass = (id , nid) => {
 //100vh = 731px and each section has a hieght of 100vh
 let scroll = (n) => {
     window.scrollTo({
-        top: (n * vh),
+        top: (n * vh)-30,
         left: 0,
         behavior: "smooth"
     });
