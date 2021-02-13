@@ -22,11 +22,11 @@ let x = performance.now();
 const toggleButton = document.querySelector('div.toggle-button')
 const navbarLinks = document.querySelector('.navbar-links')
 const sections = document.querySelectorAll('section');
+const links = document.getElementsByTagName('a');
 const ul = document.getElementById("navbar__list");
 const addSection = document.getElementById('btn');
 const main = document.querySelector('main');
 const fragment = document.createDocumentFragment();
-const links = document.getElementsByTagName('a');
 let NumberOfSections = sections.length;
 const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 /**
@@ -38,7 +38,7 @@ const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeig
 
 let updateNav = (i) => {
     let listItem = document.createElement('li');
-    listItem.innerHTML = `<a>section${i + 1}</a>`
+    listItem.innerHTML = `<a id ="a${i}" >section${i + 1}</a>`
     //listItem.innerHTML=`<a href="#section${i+1}">section${i+1}</a>`
     fragment.appendChild(listItem);
 }
@@ -51,9 +51,16 @@ let NewupdateNav = (i) => {
 }
 
 let removeActiveClasses = () => {
-    sections.forEach(section => { section.classList.remove("your-active-class") })
+    for(let i = 0 ;i<links.length ; i++ ){
+         links[i].classList.remove("active");
+    }
+    sections.forEach(section => {
+         section.classList.remove("your-active-class")
+        })
 }
-let addActiveClass = (id) => { document.getElementById(id).classList.add("your-active-class") }
+let addActiveClass = (id , nid) => { 
+    document.getElementById(nid).classList.add("active")
+    document.getElementById(id).classList.add("your-active-class") }
 //100vh = 731px and each section has a hieght of 100vh
 let scroll = (n) => {
     window.scrollTo({
@@ -77,11 +84,12 @@ ul.appendChild(fragment);
 // Add class 'active' to section when near top of viewport
 onscroll = () => {
     let scrollPosition = document.documentElement.scrollTop;
-    for (section of sections) {
-        if (scrollPosition >= section.offsetTop && scrollPosition < section.offsetTop + section.offsetHeight) {
-            let currentId = section.attributes.id.value;
+    for (let i = 0 ;   i<sections.length    ;i++) {
+        if (scrollPosition >= sections[i].offsetTop && scrollPosition < sections[i].offsetTop + sections[i].offsetHeight) {
+            let currentId = sections[i].attributes.id.value;
+            let navid = `a${i}`
             removeActiveClasses();
-            addActiveClass(currentId);
+            addActiveClass(currentId , navid);
         }
     }
 }
@@ -116,13 +124,13 @@ console.log(y - x);
 // Build menu 
 toggleButton.addEventListener('click', () => {
     console.log('clicked')
-  if(navbarLinks.style.display==="none"){navbarLinks.style.display="flex"}
-  else{navbarLinks.style.display="none"}
+    if (navbarLinks.style.display === "none") { navbarLinks.style.display = "flex" }
+    else { navbarLinks.style.display = "none" }
 })
 // Scroll to section on link click  
 for (let i = 0; i < links.length; i++) {
     links[i].addEventListener('click', () => {
-        scroll(i+1);
+        scroll(i + 1);
     })
 }
 

@@ -370,3 +370,6 @@ section.your-active-class .landing__container::after {
 		           rotate(-360deg);
 	}
 }
+.active{
+    background-color: rgb(99, 99, 99);
+}
