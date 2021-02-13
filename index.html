@@ -18,16 +18,23 @@
   IDs are only used for sections to connect menu achors to sections -->
   <header class="page__header">
     <nav class="navbar__menu">
+      <div  class="toggle-button">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
       <!-- Navigation starts as empty UL that will be populated with JS -->
+      <div class="navbar-links">
       <ul id="navbar__list">
       </ul>
+    </div>
     </nav>
   </header>
   <main>
     <header class="main__hero">
       <h1>Landing Page </h1>
     </header>
-    <!-- Each Section has an ID (used for the anchor) and 
+    <!-- Each Section has an ID (u sed for the anchor) and 
     a data attribute that will populate the li node.
     Adding more sections will automatically populate nav.
     The first section is set to active class by default -->
@@ -99,7 +106,6 @@
   <footer class="page__footer">
     <p>&copy Udacity</p>
     <button id="btn">Add a New Section</button>
-    <a id="up" href="#"><img src="icons/up.png" width="60px"></a>
   </footer>
   <script src="js/app.js"></script>
 </body>

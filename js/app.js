@@ -19,6 +19,8 @@
  * 
 */
 let x = performance.now();
+const toggleButton = document.querySelector('div.toggle-button')
+const navbarLinks = document.querySelector('.navbar-links')
 const sections = document.querySelectorAll('section');
 const ul = document.getElementById("navbar__list");
 const addSection = document.getElementById('btn');
@@ -54,7 +56,7 @@ let addActiveClass = (id) => { document.getElementById(id).classList.add("your-a
 //100vh = 731px and each section has a hieght of 100vh
 let scroll = (n) => {
     window.scrollTo({
-        top: n * 731,
+        top: n * window.innerHeight,
         left: 0,
         behavior: "smooth"
     });
@@ -111,14 +113,20 @@ let y = performance.now();
 console.log(y - x);
 
 // Build menu 
-
+toggleButton.addEventListener('click', () => {
+    console.log('clicked')
+  if(navbarLinks.style.display==="none"){navbarLinks.style.display="flex"}
+  else{navbarLinks.style.display="none"}
+})
 // Scroll to section on link click  
 for (let i = 0; i < links.length; i++) {
     links[i].addEventListener('click', () => {
-        scroll(i + 1);
+        scroll(i+1);
     })
 }
 
 // Set sections as active
+
+
 
 

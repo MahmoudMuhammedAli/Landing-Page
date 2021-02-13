@@ -11,8 +11,10 @@
 
 /* ---- Base Rules ---- */
 *{
+    box-sizing: border-box;
     scroll-behavior: smooth;
-
+    margin: 0;
+    padding: 0;
 }
 body {
     background: rgb(136,203,171);
@@ -25,12 +27,43 @@ body {
     scroll-behavior: smooth;
     
 }
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar__menu{
+    position: fixed;
+    top:0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 9%;
+    background-color: rgba(22, 22, 22, 0.598);
+}
+#navbar__list{
+    
+    margin: 0;
+    padding: 0;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    left: 100%;
+}
+#navbar__list li{
+    padding: 2%;
+}
 #navbar__list li a{
+    display: inline-block ;
     text-decoration: none;
     text-transform: uppercase;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bolder;
-    font-size: 1.2rem;
+    font-size: 150%;
     color: rgba(255, 255, 255, 0.85);
     transition: .4s ease-in-out;
     border: 1px solid white;
@@ -41,26 +74,59 @@ body {
     color:rgb(2, 1, 0);
     background-color: white;
 }
-.navbar__menu{
-    position: fixed;
-    top:0;
-    z-index: 1;
-    display: flex;
-    width: 100%;
-    height: 9%;
-    background-color: rgba(22, 22, 22, 0.598);
-}
-#navbar__list{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    
-}
-#navbar__list li{
-    padding: 2%;
+.toggle-button {
+    cursor: pointer;
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
 }
 
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+@media (max-width: 800px) {
+    .navbar__menu {
+        flex-direction: column;
+        align-items: flex-start;
+        height: fit-content;
+    }
+
+    .toggle-button {
+        display: flex;
+    }
+
+    .navbar-links {
+        display: "none";
+        width:35%;
+    }
+  
+    #navbar__list {
+        width: 100%;
+        flex-direction: column;
+        
+        
+    }
+
+    .navbar-links ul li {
+        text-align: center;
+    }
+
+    .navbar-links ul li a {
+        padding: .5rem 1rem;
+    }
+
+    .navbar-links.active {
+        display: flex;
+    }
+}
 
 
 /* Typeography General*/
@@ -166,7 +232,9 @@ section {
         max-width: 50em;
         padding: 4em;
     }
+
 }
+
 
 section:nth-of-type(even) .landing__container {
     margin-right: 0;
@@ -274,6 +342,7 @@ section.your-active-class .landing__container::after {
     position: absolute;
     left:50%;
     transform: translate(-50% , -200%);
+    display: none;
 }
 
 #btn:hover {
